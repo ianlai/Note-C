@@ -6,9 +6,9 @@ IDIR = include
 INCLUDES = -I$(IDIR)
 
 #-------- .c files --------
-#SRCS = test.c lib.c libbase.c
 SDIR = src
-SRCS = $(shell find $(SDIR) -name "*.c")
+#SRCS = $(SDIR)/test.c $(SDIR)/lib.c $(SDIR)/libbase.c  #static 
+SRCS = $(shell find $(SDIR) -name "*.c")                #dynamic 
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,6 +25,7 @@ $(MAIN): $(OBJS)
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-
+clean: 
+	rm -f $(MAIN) $(OBJS)
 
 
